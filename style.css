@@ -183,30 +183,6 @@ button:hover {
 #history-table tr:hover {
   background: #414773;
 }
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  #auth-section,
-  #dashboard-section,
-  #history-section,
-  #subjects-section,
-  #difficulty-section,
-  #questions-section {
-    padding: 15px;
-    max-width: 95%;
-  }
-
-  button,
-  input {
-    font-size: 14px;
-  }
-
-  .subject,
-  #options button {
-    font-size: 14px;
-    padding: 10px;
-  }
-}
 .back-btn {
   background-color: #f44336; /* Red background */
   color: white; /* White text */
@@ -223,4 +199,137 @@ button:hover {
 
 .back-btn:hover {
   background-color: #c62828; /* Darker red on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #auth-section,
+  #dashboard-section,
+  #history-section,
+  #subjects-section,
+  #difficulty-section,
+  #questions-section {
+    padding: 15px;
+    max-width: 95%;
+  }
+  #user-info{
+    width: 100%;
+    /* padding: 0 5px; */
+  }
+ .gap{
+  margin-left: 5px;
+ }
+
+  button,
+  input {
+    font-size: 14px;
+  }
+
+  .subject,
+  #options button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+  #auth-section,
+  #dashboard-section,
+  #history-section,
+  #subjects-section,
+  #difficulty-section,
+  #questions-section {
+    padding: 15px;
+    max-width: 90%;
+  }
+
+  #user-info {
+    /* flex-direction: column; */
+    gap: 10px;
+    font-size: 18px;
+  }
+
+  button,
+  input {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .subject,
+  #options button {
+    text-align: center;
+    font-size: 14px;
+    padding: 8px;
+    flex: 1 1 45%;
+  }
+
+  #history-table th,
+  #history-table td {
+    font-size: 12px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  #user-info {
+    font-size: 18px;
+    text-align: center;
+    gap: 5px;
+  }
+
+  .subject,
+  #options button {
+    text-align: center;
+    font-size: 18px;
+    padding: 6px;
+    flex: 1 1 100%;
+  }
+
+  #dashboard-section #user-info button{
+    font-size: 15px;
+  }
+
+  #history-table {
+    font-size: 10px;
+    overflow-x: auto;
+  }
+
+  #history-table th,
+  #history-table td {
+    padding: 8px;
+  }
+
+  .back-btn {
+    font-size: 12px;
+    padding: 8px 10px;
+    width: auto;
+  }
+}
+
+@media (max-width: 360px) {
+  #user-info {
+    flex-direction: column;
+    font-size: 18px;
+    gap: 3px;
+  }
+
+  button,
+  input {
+    font-size: 18px;
+    padding: 8px;
+  }
+
+  #history-table th,
+  #history-table td {
+    font-size: 10px;
+    padding: 6px;
+  }
+
+  .subject,
+  #options button {
+    text-align: center;
+    font-size: 18px;
+    padding: 5px;
+  }
 }
