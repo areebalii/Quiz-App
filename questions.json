@@ -1,0 +1,91 @@
+{
+    "subjects": [
+      {
+        "name": "Math",
+        "levels": {
+          "easy": [
+            { "question": "2 + 2 = ?", "options": ["3", "4", "5"], "answer": "4" },
+            { "question": "5 - 3 = ?", "options": ["1", "2", "3"], "answer": "2" },
+            { "question": "5 * 3 = ?", "options": ["1", "2", "15"], "answer": "15" }
+          ],
+          "medium": [
+            { "question": "12 / 4 = ?", "options": ["2", "3", "4"], "answer": "3" },
+            { "question": "9 x 3 = ?", "options": ["27", "18", "36"], "answer": "27" }
+          ],
+          "hard": [
+            { "question": "15 x 15 = ?", "options": ["225", "255", "205"], "answer": "225" },
+            { "question": "sqrt(144) = ?", "options": ["12", "14", "10"], "answer": "12" }
+          ]
+        }
+      },
+      {
+        "name": "Science",
+        "levels": {
+          "easy": [
+            { "question": "What planet is known as the Red Planet?", "options": ["Earth", "Mars", "Venus"], "answer": "Mars" },
+            { "question": "Water boils at 100 degrees on which scale?", "options": ["Fahrenheit", "Celsius", "Kelvin"], "answer": "Celsius" }
+          ],
+          "medium": [
+            { "question": "What is the chemical symbol for gold?", "options": ["Au", "Ag", "Go"], "answer": "Au" },
+            { "question": "What gas do plants absorb from the atmosphere?", "options": ["Oxygen", "Nitrogen", "Carbon Dioxide"], "answer": "Carbon Dioxide" }
+          ],
+          "hard": [
+            { "question": "Who developed the theory of relativity?", "options": ["Isaac Newton", "Albert Einstein", "Galileo"], "answer": "Albert Einstein" },
+            { "question": "What is the powerhouse of the cell?", "options": ["Mitochondria", "Nucleus", "Ribosome"], "answer": "Mitochondria" }
+          ]
+        }
+      },
+      {
+        "name": "History",
+        "levels": {
+          "easy": [
+            { "question": "Who was the first President of the United States?", "options": ["Abraham Lincoln", "George Washington", "John Adams"], "answer": "George Washington" },
+            { "question": "In which year did World War II end?", "options": ["1945", "1946", "1944"], "answer": "1945" }
+          ],
+          "medium": [
+            { "question": "Which empire was ruled by Julius Caesar?", "options": ["Greek", "Roman", "Ottoman"], "answer": "Roman" },
+            { "question": "What was the name of the ship on which the Pilgrims traveled to America?", "options": ["Mayflower", "Santa Maria", "Endeavour"], "answer": "Mayflower" }
+          ],
+          "hard": [
+            { "question": "Who was the first Emperor of China?", "options": ["Liu Bang", "Qin Shi Huang", "Kublai Khan"], "answer": "Qin Shi Huang" },
+            { "question": "The fall of Constantinople occurred in what year?", "options": ["1453", "1492", "1415"], "answer": "1453" }
+          ]
+        }
+      },
+      {
+        "name": "Geography",
+        "levels": {
+          "easy": [
+            { "question": "What is the capital of France?", "options": ["Berlin", "Madrid", "Paris"], "answer": "Paris" },
+            { "question": "Which continent is the Sahara Desert located in?", "options": ["Asia", "Africa", "Australia"], "answer": "Africa" }
+          ],
+          "medium": [
+            { "question": "Which country has the most natural lakes?", "options": ["USA", "Canada", "Russia"], "answer": "Canada" },
+            { "question": "What is the smallest country in the world?", "options": ["Monaco", "Malta", "Vatican City"], "answer": "Vatican City" }
+          ],
+          "hard": [
+            { "question": "Mount Everest is part of which mountain range?", "options": ["Andes", "Himalayas", "Rockies"], "answer": "Himalayas" },
+            { "question": "What is the longest river in the world?", "options": ["Amazon", "Nile", "Yangtze"], "answer": "Nile" }
+          ]
+        }
+      },
+      {
+        "name": "Literature",
+        "levels": {
+          "easy": [
+            { "question": "Who wrote 'Romeo and Juliet'?", "options": ["Charles Dickens", "William Shakespeare", "Mark Twain"], "answer": "William Shakespeare" },
+            { "question": "Which book is about a boy who lived under the stairs?", "options": ["Hunger Games", "Harry Potter", "Percy Jackson"], "answer": "Harry Potter" }
+          ],
+          "medium": [
+            { "question": "Who wrote '1984'?", "options": ["George Orwell", "Aldous Huxley", "Ray Bradbury"], "answer": "George Orwell" },
+            { "question": "What is the name of the magical land in 'The Lion, the Witch, and the Wardrobe'?", "options": ["Narnia", "Hogwarts", "Middle-Earth"], "answer": "Narnia" }
+          ],
+          "hard": [
+            { "question": "Who wrote 'The Iliad' and 'The Odyssey'?", "options": ["Homer", "Sophocles", "Virgil"], "answer": "Homer" },
+            { "question": "What is the name of the dragon in 'The Hobbit'?", "options": ["Smaug", "Drogon", "Falkor"], "answer": "Smaug" }
+          ]
+        }
+      }
+    ]
+  }
+  

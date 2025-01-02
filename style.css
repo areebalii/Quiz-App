@@ -1,0 +1,226 @@
+/* General Reset */
+body {
+  font-family: "Roboto", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #1b1f2f; /* Deep Navy */
+  color: #e4e4e7; /* Light Gray */
+  line-height: 1.6;
+}
+
+.hidden {
+  display: none;
+}
+
+h2,
+h3 {
+  text-align: center;
+  font-weight: 600;
+  color: #ffffff; /* Crisp white for titles */
+}
+
+/* Card Styling for Sections */
+#auth-section,
+#dashboard-section,
+#history-section,
+#subjects-section,
+#difficulty-section,
+#questions-section {
+  margin: 20px auto;
+  padding: 25px;
+  max-width: 500px;
+  background: #242940; /* Dark Card Background */
+  border-radius: 12px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#auth-section:hover,
+#dashboard-section:hover,
+#history-section:hover,
+#subjects-section:hover,
+#difficulty-section:hover,
+#questions-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Inputs */
+input {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 12px 0;
+  border: 1px solid #555;
+  border-radius: 6px;
+  background-color: #2d314c;
+  color: #e4e4e7;
+  font-size: 14px;
+}
+
+input::placeholder {
+  color: #a9adc1;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  background: linear-gradient(90deg, #4e9eff, #1a73e8); /* Gradient */
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+#dashboard-section #user-info button {
+  width: 8em;
+  padding: 12px;
+  margin: 10px 0;
+  background: linear-gradient(90deg, #4e9eff, #1a73e8); /* Gradient */
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+/* #history-toggle-btn{
+  gap: 12px;
+} */
+
+button:hover {
+  background: linear-gradient(90deg, #3e88e0, #1664c5);
+  transform: scale(1.03);
+}
+
+/* Timer Styling */
+.timer {
+  font-size: 18px;
+  font-weight: 500;
+  color: #76ff03;
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.timer-warning {
+  color: #ffc107; /* Yellow for warning */
+}
+
+.timer-critical {
+  color: #ff3d00; /* Red for critical time */
+}
+
+/* Subjects and Options */
+#subjects,
+#options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 15px;
+}
+
+.subject,
+#options button {
+  padding: 12px 20px;
+  font-size: 16px;
+  background: linear-gradient(90deg, #3e88e0, #1664c5);
+  color: #ffffff;
+  border-radius: 8px;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.subject:hover,
+#options button:hover {
+  background: #485485;
+  transform: translateY(-3px);
+}
+
+/* User Info */
+#user-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: #2c314f; /* Lighter card for emphasis */
+  border-radius: 10px;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+/* History Section */
+#history-section h3 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #d4d4d9;
+}
+
+#history-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+#history-table th,
+#history-table td {
+  text-align: center;
+  padding: 12px 15px;
+  border: 1px solid #3e3e5b;
+}
+
+#history-table th {
+  background: #3c425f;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+#history-table tr:nth-child(even) {
+  background: #2f3351;
+}
+
+#history-table tr:hover {
+  background: #414773;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #auth-section,
+  #dashboard-section,
+  #history-section,
+  #subjects-section,
+  #difficulty-section,
+  #questions-section {
+    padding: 15px;
+    max-width: 95%;
+  }
+
+  button,
+  input {
+    font-size: 14px;
+  }
+
+  .subject,
+  #options button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+.back-btn {
+  background-color: #f44336; /* Red background */
+  color: white; /* White text */
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  width: 5vw;
+}
+
+.back-btn:hover {
+  background-color: #c62828; /* Darker red on hover */
+}
