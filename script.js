@@ -6,13 +6,24 @@ function saveUsers() {
   localStorage.setItem('users', JSON.stringify(users));
 }
 
+// Show Login Section
+function showLogin() {
+  document.getElementById('auth-section').classList.add('hidden');
+  document.getElementById('login-section').classList.remove('hidden');
+}
+
+// Show Register Section
+function showRegister() {
+  document.getElementById('login-section').classList.add('hidden');
+  document.getElementById('auth-section').classList.remove('hidden');
+}
+
 function loginUser() {
-  const username = document.getElementById('username').value.trim();
-  const password = document.getElementById('password').value.trim();
+  const username = document.getElementById('login-username').value.trim();
+  const password = document.getElementById('login-password').value.trim();
 
   if (users[username] && users[username].password === password) {
     currentUser = username;
-    alert('Login successful!');
     loadDashboard();
   } else {
     alert('Invalid username or password!');
@@ -21,19 +32,28 @@ function loginUser() {
 
 function registerUser() {
   const username = document.getElementById('username').value.trim();
+  const email = document.getElementById('email').value.trim();
   const password = document.getElementById('password').value.trim();
+
+  if (!username || !email || !password) {
+    alert('All fields are required!');
+    return;
+  }
 
   if (users[username]) {
     alert('Username already exists!');
-  } else {
-    users[username] = { password, scores: {} };
-    saveUsers();
-    alert('Registration successful!');
+    return;
   }
+
+  users[username] = { email, password, scores: {} };
+  saveUsers();
+  alert('Registration successful! Please log in.');
+  showLogin(); // Automatically redirect to login section after registration
 }
 
 function loadDashboard() {
   document.getElementById('auth-section').classList.add('hidden');
+  document.getElementById('login-section').classList.add('hidden');
   document.getElementById('dashboard-section').classList.remove('hidden');
 
   if (currentUser) {
@@ -42,9 +62,15 @@ function loadDashboard() {
   }
 
   loadSubjects();
-  loadHistory();
-  document.getElementById('history-section').classList.add('hidden'); // Hide history on load
 }
+
+function logoutUser() {
+  currentUser = null;
+  document.getElementById('dashboard-section').classList.add('hidden');
+  document.getElementById('auth-section').classList.remove('hidden');
+  alert('You have been logged out.');
+}
+
 
 function logoutUser() {
   currentUser = null;
@@ -292,3 +318,10 @@ function goBackToDifficulty() {
 // Load subjects when the page loads
 document.addEventListener('DOMContentLoaded', loadSubjects);
 
+const showHistoryBtn = document.getElementById("show-history-btn");
+const historySection = document.getElementById("history-section");
+
+showHistoryBtn.addEventListener("click", () => {
+  // Toggle the visibility of the history section
+  historySection.classList.toggle("hidden");
+});

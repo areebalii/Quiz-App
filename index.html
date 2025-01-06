@@ -9,22 +9,37 @@
   <body>
     <!-- Authentication Section -->
     <div id="auth-section">
-      <h2>Login or Register</h2>
+      <h2>Register</h2>
       <input type="text" id="username" placeholder="Username" />
+      <input type="email" id="email" placeholder="Email" />
       <input type="password" id="password" placeholder="Password" />
-      <button onclick="loginUser()">Login</button>
       <button onclick="registerUser()">Register</button>
+      <button id="login-btn" onclick="showLogin()">
+        Already have an account?
+      </button>
+    </div>
+
+    <div id="login-section" class="hidden">
+      <h2>Login</h2>
+      <input type="text" id="login-username" placeholder="Username" />
+      <input type="password" id="login-password" placeholder="Password" />
+      <button onclick="loginUser()">Login</button>
+      <button onclick="showRegister()">Don't have an account?</button>
     </div>
 
     <!-- Dashboard Section -->
     <div id="dashboard-section" class="hidden">
       <div id="user-info">
-        <span id="welcome-message"></span>
-        <button id="history-toggle-btn" onclick="toggleHistory()">Show History</button>
+        <h2 id="welcome-message"></h2>
+        <button
+          id="show-history-btn"
+          class="primary-btn"
+          onclick="loadHistory()"
+        >
+          Show History
+        </button>
         <button class="gap" onclick="logoutUser()">Logout</button>
-
-    </div>
-    
+      </div>
 
       <!-- Subjects Section -->
       <div id="subjects-section">
@@ -32,43 +47,43 @@
         <div id="subjects"></div>
       </div>
 
-<!-- Back Button (for Difficulty Section) -->
-<div id="difficulty-section" class="hidden">
-  <button class="back-btn" onclick="goBackToSubjects()">Back</button>
-  <h3>Select Difficulty</h3>
-  <button onclick="selectDifficulty('easy')">Easy</button>
-  <button onclick="selectDifficulty('medium')">Medium</button>
-  <button onclick="selectDifficulty('hard')">Hard</button>
-</div>
+      <!-- Difficulty Section -->
+      <div id="difficulty-section" class="hidden">
+        <button class="back-btn" onclick="goBackToSubjects()">Back</button>
+        <h3>Select Difficulty</h3>
+        <button onclick="selectDifficulty('easy')">Easy</button>
+        <button onclick="selectDifficulty('medium')">Medium</button>
+        <button onclick="selectDifficulty('hard')">Hard</button>
+      </div>
 
-<!-- Back Button (for Questions Section) -->
-<div id="questions-section" class="hidden">
-  <button class="back-btn" onclick="goBackToDifficulty()">Back</button>
-  <div id="timer" class="timer">Time left: 30s</div>
-  <h3 id="question-title"></h3>
-  <div id="options"></div>
-</div>
-
+      <!-- Questions Section -->
+      <div id="questions-section" class="hidden">
+        <button class="back-btn" onclick="goBackToDifficulty()">Back</button>
+        <div id="timer" class="timer">Time left: 30s</div>
+        <h3 id="question-title"></h3>
+        <div id="options"></div>
+      </div>
 
       <!-- History Section -->
-      <div id="history-section">
+      <div id="history-section" class="hidden">
         <h3>Your Quiz History</h3>
         <table id="history-table">
-            <thead>
-                <tr>
-                    <th>Subject</th>
-                    <th>Easy</th>
-                    <th>Medium</th>
-                    <th>Hard</th>
-                    <th>Total Score</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- History will be dynamically loaded here -->
-            </tbody>
+          <thead>
+            <tr>
+              <th>Subject</th>
+              <th>Easy</th>
+              <th>Medium</th>
+              <th>Hard</th>
+              <th>Total Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- History will be dynamically loaded here -->
+          </tbody>
         </table>
+      </div>
     </div>
-    
+
 
     <script src="script.js"></script>
   </body>
