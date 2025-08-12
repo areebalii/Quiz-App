@@ -57,27 +57,40 @@ function loadDashboard() {
   document.getElementById('dashboard-section').classList.remove('hidden');
 
   if (currentUser) {
-    const welcomeMessage = `Welcome, ${currentUser}!`;
-    document.getElementById('welcome-message').textContent = welcomeMessage;
+    let nameToShow = currentUser;
+    if (users[currentUser]?.displayName) {
+      nameToShow = users[currentUser].displayName;
+    }
+    document.getElementById('welcome-message').textContent = `Welcome, ${nameToShow}!`;
   }
 
   loadSubjects();
 }
 
 function logoutUser() {
-  currentUser = null;
-  document.getElementById('dashboard-section').classList.add('hidden');
-  document.getElementById('auth-section').classList.remove('hidden');
-  alert('You have been logged out.');
+  // If Firebase signOut helper exists, call it
+  if (window.firebaseSignOut) {
+    window.firebaseSignOut().then(() => {
+      currentUser = null;
+      document.getElementById('dashboard-section').classList.add('hidden');
+      document.getElementById('auth-section').classList.remove('hidden');
+      alert('You have been logged out.');
+    }).catch((e) => {
+      console.error('Firebase signOut failed:', e);
+      // still clear local session
+      currentUser = null;
+      document.getElementById('dashboard-section').classList.add('hidden');
+      document.getElementById('auth-section').classList.remove('hidden');
+      alert('You have been logged out.');
+    });
+  } else {
+    currentUser = null;
+    document.getElementById('dashboard-section').classList.add('hidden');
+    document.getElementById('auth-section').classList.remove('hidden');
+    alert('You have been logged out.');
+  }
 }
 
-
-function logoutUser() {
-  currentUser = null;
-  document.getElementById('dashboard-section').classList.add('hidden');
-  document.getElementById('auth-section').classList.remove('hidden');
-  alert('You have been logged out.');
-}
 
 // Inline JSON data as a JavaScript object
 const subjects = [
@@ -507,3 +520,16 @@ showHistoryBtn.addEventListener("click", () => {
   // Toggle the visibility of the history section
   historySection.classList.toggle("hidden");
 });
+
+function googleLogin(user) {
+  // use Firebase uid as local key
+  users[user.uid] = {
+    email: user.email,
+    displayName: user.displayName || user.email,
+    scores: users[user.uid]?.scores || {}
+  };
+  saveUsers();
+
+  currentUser = user.uid;
+  loadDashboard();
+}

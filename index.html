@@ -1,90 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Quiz App</title>
-  </head>
-  <body>
-    <!-- Authentication Section -->
-    <div id="auth-section">
-      <h2>Register</h2>
-      <input type="text" id="username" placeholder="Username" />
-      <input type="email" id="email" placeholder="Email" />
-      <input type="password" id="password" placeholder="Password" />
-      <button onclick="registerUser()">Register</button>
-      <button id="login-btn" onclick="showLogin()">
-        Already have an account?
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Quiz App</title>
+</head>
+
+<body>
+  <!-- Authentication Section -->
+  <div id="auth-section">
+    <button id="googleLoginBtn" style="margin-top: 10px;">
+      <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google Logo"
+        style="width:20px; vertical-align:middle; margin-right:8px;">
+      Continue with Google
+    </button>
+
+    <div class="or">Or</div>
+
+    <h2>Register</h2>
+    <input type="text" id="username" placeholder="Username" />
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password" id="password" placeholder="Password" />
+    <button onclick="registerUser()">Register</button>
+    <button id="login-btn" onclick="showLogin()">
+      Already have an account?
+    </button>
+  </div>
+
+  <div id="login-section" class="hidden">
+    <h2>Login</h2>
+    <input type="text" id="login-username" placeholder="Username" />
+    <input type="password" id="login-password" placeholder="Password" />
+    <button onclick="loginUser()">Login</button>
+    <button onclick="showRegister()">Don't have an account?</button>
+  </div>
+
+  <!-- Dashboard Section -->
+  <div id="dashboard-section" class="hidden">
+    <div id="user-info">
+      <h2 id="welcome-message"></h2>
+      <button id="show-history-btn" class="primary-btn" onclick="loadHistory()">
+        Show History
       </button>
+      <button class="gap" onclick="logoutUser()">Logout</button>
     </div>
 
-    <div id="login-section" class="hidden">
-      <h2>Login</h2>
-      <input type="text" id="login-username" placeholder="Username" />
-      <input type="password" id="login-password" placeholder="Password" />
-      <button onclick="loginUser()">Login</button>
-      <button onclick="showRegister()">Don't have an account?</button>
+    <!-- Subjects Section -->
+    <div id="subjects-section">
+      <h3>Select a Subject</h3>
+      <div id="subjects"></div>
     </div>
 
-    <!-- Dashboard Section -->
-    <div id="dashboard-section" class="hidden">
-      <div id="user-info">
-        <h2 id="welcome-message"></h2>
-        <button
-          id="show-history-btn"
-          class="primary-btn"
-          onclick="loadHistory()"
-        >
-          Show History
-        </button>
-        <button class="gap" onclick="logoutUser()">Logout</button>
-      </div>
-
-      <!-- Subjects Section -->
-      <div id="subjects-section">
-        <h3>Select a Subject</h3>
-        <div id="subjects"></div>
-      </div>
-
-      <!-- Difficulty Section -->
-      <div id="difficulty-section" class="hidden">
-        <button class="back-btn" onclick="goBackToSubjects()">Back</button>
-        <h3>Select Difficulty</h3>
-        <button onclick="selectDifficulty('easy')">Easy</button>
-        <button onclick="selectDifficulty('medium')">Medium</button>
-        <button onclick="selectDifficulty('hard')">Hard</button>
-      </div>
-
-      <!-- Questions Section -->
-      <div id="questions-section" class="hidden">
-        <button class="back-btn" onclick="goBackToDifficulty()">Back</button>
-        <div id="timer" class="timer">Time left: 30s</div>
-        <h3 id="question-title"></h3>
-        <div id="options"></div>
-      </div>
-
-      <!-- History Section -->
-      <div id="history-section" class="hidden">
-        <h3>Your Quiz History</h3>
-        <table id="history-table">
-          <thead>
-            <tr>
-              <th>Subject</th>
-              <th>Easy</th>
-              <th>Medium</th>
-              <th>Hard</th>
-              <th>Total Score</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- History will be dynamically loaded here -->
-          </tbody>
-        </table>
-      </div>
+    <!-- Difficulty Section -->
+    <div id="difficulty-section" class="hidden">
+      <button class="back-btn" onclick="goBackToSubjects()">Back</button>
+      <h3>Select Difficulty</h3>
+      <button onclick="selectDifficulty('easy')">Easy</button>
+      <button onclick="selectDifficulty('medium')">Medium</button>
+      <button onclick="selectDifficulty('hard')">Hard</button>
     </div>
 
+    <!-- Questions Section -->
+    <div id="questions-section" class="hidden">
+      <button class="back-btn" onclick="goBackToDifficulty()">Back</button>
+      <div id="timer" class="timer">Time left: 30s</div>
+      <h3 id="question-title"></h3>
+      <div id="options"></div>
+    </div>
 
-    <script src="script.js"></script>
-  </body>
+    <!-- History Section -->
+    <div id="history-section" class="hidden">
+      <h3>Your Quiz History</h3>
+      <table id="history-table">
+        <thead>
+          <tr>
+            <th>Subject</th>
+            <th>Easy</th>
+            <th>Medium</th>
+            <th>Hard</th>
+            <th>Total Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- History will be dynamically loaded here -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <script src="script.js"></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+    import {
+      getAuth,
+      GoogleAuthProvider,
+      signInWithPopup,
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCnkt8qDr8eWmMFfw5xWKDdZ_-2v-nM-bE",
+      authDomain: "quiz-app-8f5a1.firebaseapp.com",
+      projectId: "quiz-app-8f5a1",
+      storageBucket: "quiz-app-8f5a1.firebasestorage.app",
+      messagingSenderId: "866427096241",
+      appId: "1:866427096241:web:f4c35743c94eb2086ae690"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    // Expose a firebase signOut helper to your non-module script
+    window.firebaseSignOut = async () => {
+      try {
+        await signOut(auth);
+      } catch (err) {
+        console.error("firebaseSignOut error:", err);
+        throw err;
+      }
+    };
+
+    // If user already signed-in with Firebase, auto-login into your app
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // Avoid re-calling if already the same user
+        if (window.currentUser !== user.uid) {
+          if (typeof googleLogin === "function") {
+            googleLogin(user);
+          } else {
+            // if script.js hasn't set googleLogin yet, save temp
+            window._pendingGoogleUser = user;
+          }
+        }
+      } else {
+        // no firebase user signed in
+      }
+    });
+
+    // Click handler for popup sign-in
+    document.getElementById("googleLoginBtn").addEventListener("click", () => {
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          const user = result.user;
+          // call your app function to register / store the user locally
+          if (typeof googleLogin === "function") {
+            googleLogin(user);
+          } else {
+            window._pendingGoogleUser = user;
+          }
+        })
+        .catch((error) => {
+          console.error("signInWithPopup error:", error);
+          alert("Google login failed: " + error.message);
+        });
+    });
+
+    // If script.js ran after module script and set a pending user, consume it:
+    window.addEventListener("load", () => {
+      if (window._pendingGoogleUser && typeof googleLogin === "function") {
+        googleLogin(window._pendingGoogleUser);
+        window._pendingGoogleUser = null;
+      }
+    });
+  </script>
+
+</body>
+
 </html>
