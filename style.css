@@ -39,6 +39,15 @@ h3 {
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+#dashboard-section{
+  padding: 25px;
+  max-width: 800px;
+  margin: 20px auto;
+  background: #242940;
+  border-radius: 12px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
 #auth-section {
   max-width: 600px;
